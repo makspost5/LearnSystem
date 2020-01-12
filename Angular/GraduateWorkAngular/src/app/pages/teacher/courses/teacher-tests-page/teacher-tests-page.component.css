@@ -1,0 +1,22 @@
+table {
+    background-color: white;
+}
+
+tr{
+    cursor: pointer;
+}
+
+.content {
+    table-layout: fixed;
+    border-spacing: 0;
+    padding: 0;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 98vw;
+}
+
+.create-btn{
+    float: right;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}

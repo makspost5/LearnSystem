@@ -1,0 +1,125 @@
+<div class="teacher" style="background-color: whitesmoke">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="pupil-page">На главную</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="pupil-page/courses">Курсы <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pupil-page/tests">Тесты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pupil-page/results">Результаты</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+      </form>
+    </div>
+  </nav>
+  <div>
+    <div class="PageContent">
+      <div class="card">
+        <div class="card-body">
+
+          <nav class="nav nav-pills flex-column flex-sm-row" style="background: lightgray">
+            <div *ngFor="let q of question let i = index;" style="display: contents;">
+              <a style="color: white;"
+                [ngClass]="{'flex-sm-fill': true, 'text-sm-center': true,'nav-link': true,'active': selectedQuestionIndex === i && !isQuestion}"
+                (click)="selectQuestion(i, false)" [routerLink]="[]">⯈</a>
+              <a style="color: white; font-weight: 600;"
+                [ngClass]="{'flex-sm-fill': true, 'text-sm-center': true,'nav-link': true,'active': selectedQuestionIndex === i && isQuestion}"
+                (click)="selectQuestion(i, true)" [routerLink]="[]">?</a>
+            </div>
+          </nav>
+          <br>
+          <div *ngIf="!isQuestion && isFieldAll">
+            <div class="theoty" [innerHTML]="question[selectedQuestionIndex].Theory.Body | safe: 'html'">
+
+            </div>
+          </div>
+
+          <div *ngIf="isQuestion">
+            <div class="questionContent" *ngIf="selectedQuestionIndex !== -1">
+
+              <p class="question question-text">{{question[selectedQuestionIndex].Body}}</p>
+
+              <div id="quizSelector" *ngIf="question[selectedQuestionIndex].AnswerTypeID === 1 && isFieldAll">
+                <div class="answers multipleChoiceQuiz">
+                  <div *ngFor="let answer of question[selectedQuestionIndex].Answer let i = index;"
+                    class="answer materialRadio">
+                    <label class="container">
+                      <input type="radio" name="radio" value="i" (change)="radioButtonClicked(i)">
+                      <span class="checkmark radio-checkmark"></span>
+                    </label>
+                    <div class="text">{{answer.Body}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="quizSelector" *ngIf="question[selectedQuestionIndex].AnswerTypeID === 2 && isFieldAll">
+                <div class="answers multipleChoiceQuiz">
+                  <div *ngFor="let answer of question[selectedQuestionIndex].Answer let i = index;"
+                    class="answer materialRadio">
+                    <label class="container">
+                      <input type="checkbox" name="checkbox" value="i" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="answers[i]">
+                      <span class="checkmark checkbox-checkmark"></span>
+                    </label>
+                    <div class="text">{{answer.Body}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="quizSelector" *ngIf="question[selectedQuestionIndex].AnswerTypeID === 3 && isFieldAll">
+                <div class="answers multipleChoiceQuiz">
+                  <div *ngFor="let answer of question[selectedQuestionIndex].AnswerOrder let i = index;"
+                    class="answer materialRadio">
+                    <label class="container">
+                      <span class="checkmark checkbox-checkmark checkmark-order"
+                        *ngIf="this.testResult.QuestionResult[this.selectedQuestionIndex].AnswerOrderResult[i].SelectedSerialNumber === 0"
+                        (click)="orderAnswerClick(i)"> </span>
+                      <span class="checkmark checkbox-checkmark checkmark-order"
+                        *ngIf="this.testResult.QuestionResult[this.selectedQuestionIndex].AnswerOrderResult[i].SelectedSerialNumber !== 0"
+                        (click)="orderAnswerClick(i)">{{this.testResult.QuestionResult[this.selectedQuestionIndex].AnswerOrderResult[i].SelectedSerialNumber}}
+                      </span>
+                    </label>
+                    <div class="text">{{answer.Body}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="quizSelector" *ngIf="question[selectedQuestionIndex].AnswerTypeID === 5 && isFieldAll">
+                <div class="answers multipleChoiceQuiz">
+                  <div *ngFor="let answer of question[selectedQuestionIndex].AnswerMatching let i = index;"
+                    class="answer materialRadio">
+                    <div class="text text-maching left-mach">{{answer.LeftParth}}</div>
+                    <input class="text text-maching right-mach" type="text" placeholder="Правая часть"
+                      [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="this.testResult.QuestionResult[this.selectedQuestionIndex].AnswerMatchingResult[i].SelectedRightParth">
+                  </div>
+                </div>
+              </div>
+
+              <div id="quizSelector" *ngIf="question[selectedQuestionIndex].AnswerTypeID === 6 && isFieldAll">
+                <textarea class="text-area-question"
+                  [(ngModel)]="this.testResult.QuestionResult[this.selectedQuestionIndex].CustomAnswer[0].Body"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+          <button class="actionButton skipTextButton" (click)="actionButtonClick()">
+            <span class="materialWave">🡢</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

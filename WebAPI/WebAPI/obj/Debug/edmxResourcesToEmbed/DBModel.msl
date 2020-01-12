@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище GraduateWorkModelContainer" CdmEntityContainer="GraduateWorkEntities">
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="IsRight" ColumnName="IsRight" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerMatching">
+      <EntityTypeMapping TypeName="GraduateWorkModel.AnswerMatching">
+        <MappingFragment StoreEntitySet="AnswerMatching">
+          <ScalarProperty Name="AnswerMatchingID" ColumnName="AnswerMatchingID" />
+          <ScalarProperty Name="LeftParth" ColumnName="LeftParth" />
+          <ScalarProperty Name="RightParth" ColumnName="RightParth" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerMatchingResult">
+      <EntityTypeMapping TypeName="GraduateWorkModel.AnswerMatchingResult">
+        <MappingFragment StoreEntitySet="AnswerMatchingResult">
+          <ScalarProperty Name="AnswerMatchingResultID" ColumnName="AnswerMatchingResultID" />
+          <ScalarProperty Name="SelectedLeftParth" ColumnName="SelectedLeftParth" />
+          <ScalarProperty Name="SelectedRightParth" ColumnName="SelectedRightParth" />
+          <ScalarProperty Name="QuestionResultID" ColumnName="QuestionResultID" />
+          <ScalarProperty Name="AnswerMatchingID" ColumnName="AnswerMatchingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerOrder">
+      <EntityTypeMapping TypeName="GraduateWorkModel.AnswerOrder">
+        <MappingFragment StoreEntitySet="AnswerOrder">
+          <ScalarProperty Name="AnswerOrderID" ColumnName="AnswerOrderID" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerOrderResult">
+      <EntityTypeMapping TypeName="GraduateWorkModel.AnswerOrderResult">
+        <MappingFragment StoreEntitySet="AnswerOrderResult">
+          <ScalarProperty Name="AnswerOrderResultID" ColumnName="AnswerOrderResultID" />
+          <ScalarProperty Name="SelectedSerialNumber" ColumnName="SelectedSerialNumber" />
+          <ScalarProperty Name="AnswerOrderID" ColumnName="AnswerOrderID" />
+          <ScalarProperty Name="QuestionResultID" ColumnName="QuestionResultID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerResult">
+      <EntityTypeMapping TypeName="GraduateWorkModel.AnswerResult">
+        <MappingFragment StoreEntitySet="AnswerResult">
+          <ScalarProperty Name="AnswerResultID" ColumnName="AnswerResultID" />
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="QuestionResultID" ColumnName="QuestionResultID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerType">
+      <EntityTypeMapping TypeName="GraduateWorkModel.AnswerType">
+        <MappingFragment StoreEntitySet="AnswerType">
+          <ScalarProperty Name="AnswerTypeID" ColumnName="AnswerTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Course">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomAnswer">
+      <EntityTypeMapping TypeName="GraduateWorkModel.CustomAnswer">
+        <MappingFragment StoreEntitySet="CustomAnswer">
+          <ScalarProperty Name="CustomAnswerID" ColumnName="CustomAnswerID" />
+          <ScalarProperty Name="QuestionResultID" ColumnName="QuestionResultID" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculty">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculty">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+          <ScalarProperty Name="YearOfEnter" ColumnName="YearOfEnter" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupSubject">
+      <EntityTypeMapping TypeName="GraduateWorkModel.GroupSubject">
+        <MappingFragment StoreEntitySet="GroupSubject">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="GroupSubjectID" ColumnName="GroupSubjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pupil">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Pupil">
+        <MappingFragment StoreEntitySet="Pupil">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="ConfirmedEmail" ColumnName="ConfirmedEmail" />
+          <ScalarProperty Name="ConfirmedAccount" ColumnName="ConfirmedAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="NumberOfPoints" ColumnName="NumberOfPoints" />
+          <ScalarProperty Name="AnswerTypeID" ColumnName="AnswerTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionResult">
+      <EntityTypeMapping TypeName="GraduateWorkModel.QuestionResult">
+        <MappingFragment StoreEntitySet="QuestionResult">
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="QuestionResultID" ColumnName="QuestionResultID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Result">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Result">
+        <MappingFragment StoreEntitySet="Result">
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SectionBlock">
+      <EntityTypeMapping TypeName="GraduateWorkModel.SectionBlock">
+        <MappingFragment StoreEntitySet="SectionBlock">
+          <ScalarProperty Name="SectionBlockID" ColumnName="SectionBlockID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="SubjectSectionID" ColumnName="SubjectSectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SectionBlockResult">
+      <EntityTypeMapping TypeName="GraduateWorkModel.SectionBlockResult">
+        <MappingFragment StoreEntitySet="SectionBlockResult">
+          <ScalarProperty Name="SectionBlockResultID" ColumnName="SectionBlockResultID" />
+          <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+          <ScalarProperty Name="SectionBlockID" ColumnName="SectionBlockID" />
+          <ScalarProperty Name="SubjectSectionResultID" ColumnName="SubjectSectionResultID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectCourse">
+      <EntityTypeMapping TypeName="GraduateWorkModel.SubjectCourse">
+        <MappingFragment StoreEntitySet="SubjectCourse">
+          <ScalarProperty Name="SubjectCourseID" ColumnName="SubjectCourseID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectCourseAvailable">
+      <EntityTypeMapping TypeName="GraduateWorkModel.SubjectCourseAvailable">
+        <MappingFragment StoreEntitySet="SubjectCourseAvailable">
+          <ScalarProperty Name="SubjectCourseID" ColumnName="SubjectCourseID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="SubjectCourseAvailable1" ColumnName="SubjectCourseAvailable" />
+          <ScalarProperty Name="SubjectCourseAvailableID" ColumnName="SubjectCourseAvailableID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectSection">
+      <EntityTypeMapping TypeName="GraduateWorkModel.SubjectSection">
+        <MappingFragment StoreEntitySet="SubjectSection">
+          <ScalarProperty Name="SubjectSectionID" ColumnName="SubjectSectionID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="SubjectCourseID" ColumnName="SubjectCourseID" />
+          <ScalarProperty Name="HierarchyLevel" ColumnName="HierarchyLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectSectionResult">
+      <EntityTypeMapping TypeName="GraduateWorkModel.SubjectSectionResult">
+        <MappingFragment StoreEntitySet="SubjectSectionResult">
+          <ScalarProperty Name="SubjectSectionResultID" ColumnName="SubjectSectionResultID" />
+          <ScalarProperty Name="SubjectSectionID" ColumnName="SubjectSectionID" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GraduateWorkModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="Cabinet" ColumnName="Cabinet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherSubjects">
+      <EntityTypeMapping TypeName="GraduateWorkModel.TeacherSubjects">
+        <MappingFragment StoreEntitySet="TeacherSubjects">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="TeacherSubjectsID" ColumnName="TeacherSubjectsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Term">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Term">
+        <MappingFragment StoreEntitySet="Term">
+          <ScalarProperty Name="TermID" ColumnName="TermID" />
+          <ScalarProperty Name="TheoryID" ColumnName="TheoryID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="TypeTestID" ColumnName="TypeTestID" />
+          <ScalarProperty Name="PassageMinutes" ColumnName="PassageMinutes" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="HierarchyLevel" ColumnName="HierarchyLevel" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestAvailable">
+      <EntityTypeMapping TypeName="GraduateWorkModel.TestAvailable">
+        <MappingFragment StoreEntitySet="TestAvailable">
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="IsTestAvailable" ColumnName="IsTestAvailable" />
+          <ScalarProperty Name="TestAvailableID" ColumnName="TestAvailableID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestType">
+      <EntityTypeMapping TypeName="GraduateWorkModel.TestType">
+        <MappingFragment StoreEntitySet="TestType">
+          <ScalarProperty Name="TypeTestID" ColumnName="TypeTestID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Theory">
+      <EntityTypeMapping TypeName="GraduateWorkModel.Theory">
+        <MappingFragment StoreEntitySet="Theory">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="SectionBlockID" ColumnName="SectionBlockID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

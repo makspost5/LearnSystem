@@ -1,0 +1,265 @@
+<div class="teacher">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="teacher-page">На главную</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher-page/all-courses">Курсы <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher-page/tests">Тесты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher-page/results">Результаты</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="course-content">
+        <input class="questionEditorTitle" [ngModelOptions]="{standalone: true}" placeholder="Название секции"
+            [(ngModel)]="subjectSectionParameters.Name" />
+
+        <table class="testDesigner">
+            <tbody>
+                <tr>
+                    <td class="designerLeftCell">
+                        <div>
+                            <div class="testEditorBody">
+                                <div *ngFor="let block of sectionBlocks; let i = index">
+                                    <div (click)="changeBlock(i)"
+                                        [ngClass]="{'selected-block': selectedBlockNumber === i, 'testEditorQuestion': true, 'block-float': true}">
+                                        <div class="testEditorQuestionheader">
+                                            <div class="testEditorQuestionTitle"><span>{{i+1}}.</span></div>
+                                            <span *ngIf="block.Name">{{block.Name}}</span>
+                                            <span *ngIf="!block.Name">Название блока</span>
+                                            <button class="btn btn-danger delete-button"
+                                                (click)="deleteBlock(i)">X</button>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="selectedBlockNumber === i">
+                                        <div *ngFor="let question of block.Questions; let j = index"
+                                            (click)="changeQuestion(j)"
+                                            [ngClass]="{'selected-question': block.SelectedQuestionNumber === j, 'testEditorQuestion': true}">
+                                            <div class="testEditorQuestionTitle"><span>{{j+1}}.</span></div>
+                                            <span>{{getQuestionName(j)}}</span>
+                                            <button class="btn btn-danger delete-button mini"
+                                                (click)="deleteQuestion(i)">X</button>
+                                        </div>
+
+                                        <a style="margin-bottom: 10px;" class="badge badge-light" [routerLink]="[]" (click)="addQuestion()">Добавить вопрос</a>
+                                    </div>
+                                </div>
+
+
+
+                                <button class="btn btn-secondary purple-btn" (click)="addBlock()">Добавить
+                                    блок</button>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="designerRightCell">
+                        <!-- <form class="register-form" [formGroup]="questionForm"> -->
+                        <div class="questionEditorContainer">
+
+
+
+                            <div *ngIf="selectedBlockNumber !== -1" style="display: contents;">
+                                <div class="questionTypeGroup">
+                                    <input style="margin-left: 0vw;" class="questionEditorTitle"
+                                        [ngModelOptions]="{standalone: true}" placeholder="Название блока"
+                                        [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Name" />
+
+                                    <hr class="questionEditorSeparate">
+
+                                    <div *ngIf="this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber === -1"
+                                        class="blank">
+
+                                    </div>
+
+                                    <div class="card text-center card-course"
+                                        *ngIf="this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber !== -1">
+                                        <div class="card-header">
+                                            <ul class="nav nav-tabs card-header-tabs">
+                                                <li class="nav-item">
+                                                    <a [ngClass]="{'nav-link': true, 'active': this.sectionBlocks[this.selectedBlockNumber].CreationMode}"
+                                                        (click)="changeCreationMode(true)">Теория</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a [ngClass]="{'nav-link': true, 'active': !this.sectionBlocks[this.selectedBlockNumber].CreationMode}"
+                                                        (click)="changeCreationMode(false)">Вопрос</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body struct register-form">
+                                            <div *ngIf="!this.sectionBlocks[this.selectedBlockNumber].CreationMode">
+                                                <div class="questionBody"
+                                                    *ngIf="this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber !== -1">
+                                                    <span class="questionEditorAnswerTypeTitle">Тип вопроса</span>
+                                                    <select (change)="questiontTypeChange($event.target.value)"
+                                                        [ngModelOptions]="{standalone: true}"
+                                                        [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].selectedTypeValue">
+                                                        <option value="0" disabled>Тип вопроса</option>
+                                                        <option *ngFor="let answerType of answerTypes"
+                                                            [value]="answerType.AnswerTypeID">
+                                                            {{answerType.Name}}
+                                                        </option>
+                                                    </select>
+                                                    <span class="questionEditorAnswerTypeTitle">Тело вопроса</span>
+                                                    <div class='fake_textarea' contenteditable
+                                                        [textContent]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].body"
+                                                        (input)="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].body=$event.target.textContent"
+                                                        name="questionBody"></div>
+                                                </div>
+
+                                                <div class="questionAnswers">
+                                                    <div
+                                                        *ngIf="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].questionType.isOne">
+
+                                                        <div *ngFor="let answer of this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answers; let i = index"
+                                                            style="display: flex; margin-bottom: 1vh;">
+                                                            <label class="container">
+                                                                <input *ngIf="!answer.isRight" type="radio" name="radio"
+                                                                    value="i" (change)="radioButtonClicked(i)">
+                                                                <input *ngIf="answer.isRight" checked type="radio"
+                                                                    name="radio" value="i"
+                                                                    (change)="radioButtonClicked(i)">
+                                                                <span class="checkmark radio-checkmark"></span>
+                                                            </label>
+                                                            <input class="text" type="text" placeholder="Ответ"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answers[i].body">
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        *ngIf="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].questionType.isSeveral">
+                                                        <div *ngFor="let answer of this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answers; let i = index"
+                                                            style="display: flex; margin-bottom: 1vh;">
+                                                            <label class="container">
+                                                                <input type="checkbox" name="checkbox" value="i"
+                                                                    [ngModelOptions]="{standalone: true}"
+                                                                    [(ngModel)]="answer.isRight">
+                                                                <span class="checkmark checkbox-checkmark"></span>
+                                                            </label>
+                                                            <input class="text" type="text" placeholder="Ответ"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answers[i].body">
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        *ngIf="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].questionType.isOrder">
+                                                        <div *ngFor="let answer of this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerOrder; let i = index"
+                                                            style="display: flex; margin-bottom: 1vh;">
+                                                            <label class="container">
+                                                                <span
+                                                                    class="checkmark checkbox-checkmark checkmark-order"
+                                                                    *ngIf="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerOrder[i].number === 0"
+                                                                    (click)="orderAnswerClick(i)"> </span>
+                                                                <span
+                                                                    class="checkmark checkbox-checkmark checkmark-order"
+                                                                    *ngIf="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerOrder[i].number !== 0"
+                                                                    (click)="orderAnswerClick(i)">{{this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerOrder[i].number}}
+                                                                </span>
+                                                            </label>
+                                                            <input class="text" type="text" placeholder="Ответ"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerOrder[i].body">
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        *ngIf="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].questionType.isMatching">
+                                                        <div
+                                                            *ngFor="let answer of this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerMatching; let i = index">
+                                                            <input class="text left" type="text"
+                                                                placeholder="Левая часть"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerMatching[i].LeftParth">
+                                                            <input class="text right" type="text"
+                                                                placeholder="Правая часть"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].answerMatching[i].RightParth">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <button
+                                                        *ngIf="!(this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].questionType.isText || this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].questionType.isSpecial)"
+                                                        class="btn btn-secondary purple-btn"
+                                                        (click)="addAnswer()">Добавить
+                                                        ответ</button>
+                                                </div>
+                                            </div>
+
+
+                                            <div *ngIf="this.sectionBlocks[this.selectedBlockNumber].CreationMode">
+
+                                                <div class="switch-container">
+                                                    <button class="btn btn-secondary" style="margin-right: 85vh;"
+                                                        (click)="format()">Форматировать</button>
+                                                    <div
+                                                        [ngClass]="{'left-text': true, 'switch-text': true, 'active': !this.sectionBlocks[this.selectedBlockNumber].isDesigner}">
+                                                        Текст
+                                                    </div>
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input class="switch-input" type="checkbox"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [(ngModel)]="this.sectionBlocks[this.selectedBlockNumber].isDesigner">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div
+                                                        [ngClass]="{'right-text': true, 'switch-text': true, 'active': this.sectionBlocks[this.selectedBlockNumber].isDesigner}">
+                                                        Дизайнер
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    [ngClass]="{'displayNone': !this.sectionBlocks[this.selectedBlockNumber].isDesigner}">
+                                                    <div #theoryInput id="textBox" contenteditable="true"
+                                                        (input)="inputTheory($event.target.innerHTML)"></div>
+                                                    <!-- [innerHtml]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].theory.Body|safe: 'html'"
+                                                     -->
+                                                </div>
+                                                <div *ngIf="!this.sectionBlocks[this.selectedBlockNumber].isDesigner">
+                                                    <textarea id="textBox" contenteditable="true"
+                                                        [ngModel]="this.sectionBlocks[this.selectedBlockNumber].Questions[this.sectionBlocks[this.selectedBlockNumber].SelectedQuestionNumber].theory.BodyString"
+                                                        (ngModelChange)="inputTheoryString($event)"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <!-- </form> -->
+                    </td>
+                </tr>
+                <div class="buttons">
+                    <button style="margin-right: 2%;" class="btn btn-success" (click)="saveSection()">Сохранить</button>
+                    <button (click)="showBlocks()" class="btn btn-danger">Отменить</button>
+                </div>
+            </tbody>
+        </table>
+    </div>
+</div>

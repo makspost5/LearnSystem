@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App"
+             x:Class="App.MainPage">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+
+            <StackLayout>
+                <Label FontSize="Medium">Войдите в ваш аккаунт</Label>
+            </StackLayout>
+
+
+            <!--<Entry x:Name="SignInNickName" Placeholder="Ваш никнейм"></Entry>-->
+            <Entry x:Name="SignInEmail" Placeholder="E-mail"></Entry>
+            <Entry x:Name="SignInPassword" IsPassword="True" Placeholder="Пароль"></Entry>
+
+            <StackLayout Orientation="Horizontal">
+                <Switch x:Name="SignInSwitchShowPassword" IsToggled="False" Toggled="SignInSwitchShowPassword_Toggled"></Switch>
+                <Label>Показывать пароль</Label>
+            </StackLayout>
+
+            <Button x:Name="SignInButton" Text="Войти"
+            Clicked="SignInButton_Clicked"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,143 @@
+<div class="teacher">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="teacher-page">На главную</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/all-courses">Курсы <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/tests">Тесты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="teacher-page/results">Результаты</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="content" *ngIf="isDataLoaded">
+    <nav>
+      <div class="nav nav-tabs">
+        <a [routerLink]="[]" (click)="linkClick(true)"
+          [ngClass]="{'nav-item': true, 'nav-link': true, 'active': isTest}">Тесты</a>
+        <a [routerLink]="[]" (click)="linkClick(false)"
+          [ngClass]="{'nav-item': true, 'nav-link': true, 'active': !isTest}">Курсы</a>
+      </div>
+    </nav>
+    <div class="tab-content body-border">
+      <div *ngIf="isTest" class="tab-pane fade show active" style="display: flex;">
+        <table class="table table-hover my-table" style="margin-top: 8vh;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Название теста</th>
+              <th scope="col">Предмет</th>
+              <th scope="col">Тип теста</th>
+              <th scope="col">Группы</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let testRow of testResults; let i = index" [ngClass]="{'table-info': i === selectedTestNumber}">
+              <th scope="row" (click)="selectTest(i)">{{testRow.TestID}}</th>
+              <td (click)="selectTest(i)">{{testRow.Name}}</td>
+              <td (click)="selectTest(i)">{{testRow.Subject}}</td>
+              <td (click)="selectTest(i)">{{testRow.TestType}}</td>
+              <td (click)="selectTest(i)">
+                {{getGroups(i, true)}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="right-section">
+          <select (change)="groupChange($event.target.value)">
+            <option value="0" disabled>Группа</option>
+            <option *ngFor="let group of testResults[selectedTestNumber].GroupResultModels" [value]="group.GroupID">
+              {{group.Name}}
+            </option>
+          </select>
+
+          <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Ник</th>
+                <th scope="col">Оценка</th>
+                <th scope="col">Время окончания</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let personResult of personResultModelTest; let i = index">
+                <th>{{personResult.Name}}</th>
+                <td>{{personResult.Grade}}</td>
+                <td>{{personResult.Finish}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="!isTest" class="tab-pane fade show active" style="display: flex;">
+        <table class="table table-hover my-table" style="margin-top: 8vh;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Название курса</th>
+              <th scope="col">Предмет</th>
+              <th scope="col">Количество секций</th>
+              <th scope="col">Группы</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let testRow of courseResults; let i = index"
+              [ngClass]="{'table-info': i === selectedCourseNumber}">
+              <th scope="row" (click)="selectCourse(i)">{{testRow.SubjectCourseID}}</th>
+              <td (click)="selectCourse(i)">{{testRow.Name}}</td>
+              <td (click)="selectCourse(i)">{{testRow.Subject}}</td>
+              <td (click)="selectCourse(i)">{{testRow.SubjectSectionCount}}</td>
+              <td (click)="selectCourse(i)">
+                {{getGroups(i, false)}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="right-section">
+          <select (change)="groupChange($event.target.value)">
+            <option value="0" disabled>Группа</option>
+            <option *ngFor="let group of courseResults[selectedCourseNumber].GroupResultModels" [value]="group.GroupID">
+              {{group.Name}}
+            </option>
+          </select>
+
+          <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Ник</th>
+                <th scope="col">Секция</th>
+                <th scope="col">Последнее действие</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let personResult of personResultModelCourse; let i = index">
+                <th>{{personResult.Name}}</th>
+                <td>{{personResult.SectionName}}</td>
+                <td>{{personResult.LastTime}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,70 @@
+<div class="login-page">
+  <div class="form">
+    <form class="register-form" [formGroup]="registerForm">
+
+      <div style="position: relative;">
+        <input type="text" placeholder="Имя пользователя" formControlName="userName" />
+        <span class="validationMessage" *ngIf="isControlInvalidRegister('userName')">Введите имя пользователя</span>
+      </div>
+
+      <div style="position: relative;">
+        <input type="text" placeholder="Электронная почта" formControlName="emailRegister" />
+        <span class="validationMessage" *ngIf="isControlInvalidRegister('emailRegister')">Введите валидный адрес
+          почты</span>
+      </div>
+
+      <div style="position: relative;">
+        <input id="passwordRegister" type="password" placeholder="Пароль" formControlName="passwordRegister" />
+        <span class="validationMessage" *ngIf="isControlInvalidRegister('passwordRegister')">Введите пароль (минимум 8
+          символов)</span>
+        <span class="validationMessage" *ngIf="!confirmPasswordValidator()">Пароли не совпадают</span>
+      </div>
+
+      <div style="position: relative;">
+        <input id="confirmPassword" type="password" placeholder="Подтвердите пароль"
+          formControlName="confirmPassword" />
+        <span class="validationMessage" *ngIf="isControlInvalidRegister('confirmPassword')">Введите пароль (минимум 8
+          символов)</span>
+        <span class="validationMessage" *ngIf="!confirmPasswordValidator()">Пароли не совпадают</span>
+      </div>
+
+      <div style="position: relative;" id="groupSelector">
+        <div>
+          <select style="float: left; width: 40%;">
+            <option disabled>Факультет</option>
+            <option *ngFor="let faculty of faculties" [value]="faculty.FacultyID">{{faculty.Name}}</option>
+          </select>
+
+          <select style="float: right; width: 40%;">
+            <option disabled>Курс</option>
+            <option *ngFor="let course of courses" [value]="course.CourseID">{{course.Name}}</option>
+          </select>
+        </div>
+
+        <select formControlName="group">
+          <option value="disabled" disabled>Группа</option>
+          <option *ngFor="let group of groups" [value]="group.GroupID">{{group.GroupNumber}}</option>
+        </select>
+        <span class="validationMessage">Выберите группу</span>
+      </div>
+
+      <button (click)="Register()">Зарегистрироваться</button>
+      <p class="message">Уже зарегистрированы? <a (click)="messageClick()" href="#">Войти</a></p>
+    </form>
+
+    <form class="login-form" [formGroup]="authForm">
+      <div style="position: relative;">
+        <input type="text" placeholder="Электронная почта" formControlName="email" />
+        <span class="validationMessage" *ngIf="isControlInvalid('email')">Введите валидный адрес почты</span>
+      </div>
+
+      <div style="position: relative;">
+        <input type="password" placeholder="Пароль" formControlName="password" />
+        <span class="validationMessage" *ngIf="isControlInvalid('password')">Введите пароль</span>
+      </div>
+
+      <button (click)="SignIn()">Войти</button>
+      <p class="message">Не зарегистрированы? <a (click)="messageClick()" href="#">Создать аккаунт</a></p>
+    </form>
+  </div>
+</div>

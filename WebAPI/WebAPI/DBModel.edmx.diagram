@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c730a9bac838448f90a69ee25ef21a2d" Name="Diagram1">
+        <EntityTypeShape EntityType="GraduateWorkModel.Answer" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.AnswerMatching" Width="1.5" PointX="7.5" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.AnswerMatchingResult" Width="1.5" PointX="9.75" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.AnswerOrder" Width="1.5" PointX="7.5" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.AnswerOrderResult" Width="1.5" PointX="9.75" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.AnswerResult" Width="1.5" PointX="9.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.AnswerType" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Course" Width="1.5" PointX="1.5" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.CustomAnswer" Width="1.5" PointX="12.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Faculty" Width="1.5" PointX="1.5" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Group" Width="1.5" PointX="0.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.GroupSubject" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Person" Width="1.5" PointX="1.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Pupil" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Question" Width="1.5" PointX="5.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.QuestionResult" Width="1.5" PointX="10.5" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Result" Width="1.5" PointX="8.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.SectionBlock" Width="1.5" PointX="10.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.SectionBlockResult" Width="1.5" PointX="12.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Subject" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.SubjectCourse" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.SubjectCourseAvailable" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.SubjectSection" Width="1.5" PointX="8.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.SubjectSectionResult" Width="1.5" PointX="10.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Teacher" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.TeacherSubjects" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Term" Width="1.5" PointX="15" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Test" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.TestAvailable" Width="1.5" PointX="5.25" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.TestType" Width="1.5" PointX="0.75" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GraduateWorkModel.Theory" Width="1.5" PointX="12.75" PointY="19.125" IsExpanded="true" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Answer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerResult_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerMatching_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerMatchingResult_AnswerMatching" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerMatchingResult_QuestionResult" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerOrder_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerOrderResult_AnswerOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerOrderResult_QuestionResult" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_AnswerResult_QuestionResult" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Question_AnswerType" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Group_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_CustomAnswer_Result" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Group_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_GroupSubject_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Pupil_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectCourseAvailable_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_TestAvailable_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_GroupSubject_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Pupil_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Teacher_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Result_Pupil" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectSectionResult_Pupil" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Question_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_QuestionResult_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Theory_SectionBlock" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_QuestionResult_Result" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Result_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SectionBlock_SubjectSection" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SectionBlockResult_SectionBlock" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Theory_SectionBlock1" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SectionBlockResult_SubjectSectionResult" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectCourse_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_TeacherSubjects_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Test_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectCourse_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectCourseAvailable_SubjectCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectSection_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_SubjectSectionResult_SubjectSection" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_TeacherSubjects_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Test_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Term_Theory" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_Test_TestType" ManuallyRouted="false" />
+        <AssociationConnector Association="GraduateWorkModel.FK_TestAvailable_Test" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

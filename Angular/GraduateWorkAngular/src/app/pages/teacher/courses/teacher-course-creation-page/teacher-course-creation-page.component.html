@@ -1,0 +1,128 @@
+<div class="teacher">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="teacher-page">На главную</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/all-courses">Курсы <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/tests">Тесты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/results">Результаты</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="course-content">
+
+    <div class="courseEditorHeader">
+      <h2 *ngIf="courseParameters.name">{{courseParameters.name}}</h2>
+      <h2 *ngIf="!courseParameters.name">Название курса</h2>
+    </div>
+
+    <div class="card text-center card-course">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a [ngClass]="{'nav-link': true, 'active': modeParameters}" (click)="changeMode()">Параметры курса</a>
+          </li>
+          <li class="nav-item">
+            <a [ngClass]="{'nav-link': true, 'active': !modeParameters}" (click)="changeMode()">Структура курса</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body struct">
+        <div *ngIf="modeParameters">
+          <div class="left">
+            <input class="questionEditorTitle" name="questionName" placeholder="Название курса"
+              [ngModelOptions]="{standalone: true}" [(ngModel)]="courseParameters.name" />
+            <hr class="questionEditorSeparate">
+
+            <span class="questionEditorAnswerTypeTitle">Предмет</span>
+            <select [ngModelOptions]="{standalone: true}" [(ngModel)]="courseParameters.subjectID">
+              <option value="0" disabled>Выберите...</option>
+              <option *ngFor="let subject of subjects" [value]="subject.SubjectID">
+                {{subject.Name}}
+              </option>
+            </select>
+
+            <span class="questionEditorAnswerTypeTitle">Описание</span>
+            <textarea class="fake_textarea" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="courseParameters.description"></textarea>
+          </div>
+          <div class="right">
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Группа</th>
+                  <th scope="col">Доступность теста</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let group of groupModels; let i = index" (click)="changeAvailable(i)">
+                  <th class="left" *ngIf="group.subjectId == courseParameters.subjectID">
+                    {{group.name}}</th>
+                  <td *ngIf="group.subjectId == courseParameters.subjectID">
+                    <span *ngIf="group.isAvailable" class="text-success" style="font-weight: 600;">Доступен</span>
+                    <span *ngIf="!group.isAvailable" class="text-danger" style="font-weight: 600;">Не доступен</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="!modeParameters" style="width: 60%; position: relative; left: 20%;">
+          <div>
+            <div *ngFor="let hierarchi of hierarchys">
+              <div class="appModule">
+                <div *ngFor="let item of hierarchi.subjectSections"
+                  [ngClass]="{'subjectSection': true, 'leftBlock': hierarchi.subjectSections.length === 2}">
+                  <div *ngIf="item.SubjectSectionID !== -1">
+                    <a [routerLink]="['section', item.SubjectSectionID]">
+                      <div class="content">
+                        <div class="subjectSectionCircle">
+                          <img src="assets/images/subjectsection/{{item.image}}">
+                        </div>
+                        <span>{{item.Name}}</span>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div *ngIf="item.SubjectSectionID === -1">
+                    <div class="subjectSection">
+                      <div class="content">
+                        <div class="subjectSectionCircle" (click)="addSection(hierarchi.level)">
+                          <div class="add">Добавить блок</div>
+                        </div>
+                        <span> </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button style="margin-right: 2%;" class="btn btn-success" (click)="saveButton()">Сохранить</button>
+      <button (click)="cancelButton()" class="btn btn-danger">Отменить</button>
+    </div>
+  </div>
+
+
+</div>

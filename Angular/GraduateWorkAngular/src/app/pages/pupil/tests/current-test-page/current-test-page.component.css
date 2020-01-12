@@ -1,0 +1,499 @@
+.actionButton {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+    border: none;
+    background: #0ad;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.skipTextButton {
+    font-size: 30px;
+    background-position: -160px 0;
+    float: right;
+    margin: 15px 30px 15px 0;
+    background-color: rgb(100, 221, 23);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.multipleChoiceQuiz, .strikeOutQuiz {
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+    border-radius: 3px;
+    background: #fff;
+    text-align: left;
+}
+
+.multipleChoiceQuiz .answer, .strikeOutQuiz .answer {
+    border-top: solid 1px #eee;
+    border-radius: 3px;
+    background: #fff;
+    padding: 20px;
+    position: relative;
+    transition: box-shadow ease-in 100ms;
+    cursor: pointer;
+    display: flex;
+}
+
+.materialRadio .icon {
+    float: left;
+    width: 36px;
+}
+
+.materialRadio .outline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: solid 2px;
+    border-color: #5a5a5a;
+}
+
+.materialRadio .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #0f9d58;
+    transition: -webkit-transform ease .28s;
+    transition: transform ease .28s;
+    
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+.materialRadio .fill.scaled{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+
+.materialRadio .icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    padding: 10px;
+}
+
+.textContentContainer {
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 15px auto 0;
+    padding: 20px 20px 10px 20px;
+}
+
+.text {
+    word-wrap: break-word;
+}
+
+.questionQuestion {
+    padding: 40px;
+    font-size: 20px;
+    color: #444;
+}
+
+.quizQuestion .question {
+    white-space: pre-wrap;
+}
+
+.testDesigner {
+    table-layout: fixed;
+    border-spacing: 0;
+    padding: 0;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 98vw;
+}
+
+.designerLeftCell {
+    background-color: #83C9F4;
+    border: 1px solid #CFCFCF;
+    position: relative;
+    border-bottom: none;
+    border-right: 1px solid #CBCBCB;
+    width: 25%;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.testEditorHeader {
+    margin-top: 20px;
+    width: 29.5%;
+    height: 35px;
+    display: inline-block;
+}
+
+.testEditorHeader input {
+    font-size: 20px;
+    color: #000000;
+    width: 100%;
+}
+
+.questionEditorContainer {
+    padding: 20px;
+}
+
+.questionEditorSeparate {
+    background-color: rgb(144, 148, 148);
+    height: 3px;
+    border: none;
+    margin: 1em 0;
+    padding: 0;
+    display: block;
+}
+
+.questionTypeGroup {
+    margin-bottom: 25px;
+}
+
+.questionEditorTitle {
+    width: 100%;
+    padding: 5px 10px 5px;
+    line-height: 155%;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: 600;
+    resize: none;
+    height: 50px;
+}
+
+.designerRightCell {
+    width: 70%;
+    background-color: #A3D5FF;
+    border-top: 1px solid #CFCFCF;
+    overflow: visible;
+    border-right: 1px solid #CBCBCB;
+    height: 500px;
+}
+
+.questionEditorAnswerTypeTitle {
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    display: inline-block;
+}
+
+.questionTypeGroup select {
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 0 15px;
+    font-family: "Roboto", sans-serif;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #757575;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.questionTypeGroup input.number {
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 0 15px;
+    font-family: "Roboto", sans-serif;
+    padding-left: 5px;
+    box-sizing: border-box;
+    color: #757575;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.left {
+    width: 48% !important;
+    float: left;
+}
+
+.right {
+    width: 48% !important;
+    float: right;
+}
+
+input.left,
+input.right {
+    position: unset !important;
+    margin-bottom: 5px;
+}
+
+.questionBody {
+    width: 100%;
+    margin-top: 100px;
+}
+
+.testEditorQuestion {
+    background-color: #FAFAFA;
+    position: relative;
+    margin-bottom: 10px;
+    width: 90%;
+    float: right;
+    border-radius: 5px;
+}
+
+.testEditorQuestionheader {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.testEditorQuestionTitle {
+    font-size: 14px;
+    min-height: 17px;
+    padding: 5px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.testEditorBody {
+    top: 0;
+    margin-top: 10px;
+    margin: px;
+    position: absolute;
+    width: 97%;
+    margin-left: 1.4%;
+    margin-bottom: 10px;
+}
+
+.testEditorParameters {
+    border: 1px solid #000000;
+    background-color: #FAFAFA;
+    position: relative;
+    margin-top: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.answerOrder {
+    display: inline-block;
+    border: 1px solid #000000;
+    background-color: white;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.text {
+    padding: 5px;
+    position: relative;
+    font-size: 15px;
+    width: 90%;
+    margin-bottom: 5px;
+    right: 48%;
+}
+
+.orderAnswer {
+    width: 60%;
+}
+
+.register-form {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.buttons {
+    margin-top: 2%;
+}
+
+.purple-btn {
+    background-color: #6F73D2;
+}
+
+
+/* The container */
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 35px;
+    background-color: #eee;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.container .checkmark:after {
+    left: 12px;
+    top: 7px;
+    width: 10px;
+    height: 15px;
+}
+
+.checkbox-checkmark:after {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.radio-checkmark:after {
+    left: 10px !important;
+    top: 10px !important;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50%;
+    background: white;
+}
+
+.radio-checkmark {
+    border-radius: 50%;
+}
+
+.selected-question {
+    float: left;
+    background-color: #b8dcf2;
+}
+
+.delete-button {
+    margin-top: 5px;
+    float: right;
+    height: 30px;
+    width: 30px;
+    padding-bottom: 7px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+h2 {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 98vw;
+}
+
+.checkmark-order {
+    padding-left: 10px;
+}
+
+#fake_textarea {
+    width: 100%;
+    height: 40vh;
+    margin-top: 10px;
+    overflow: auto;
+    background-color: white;
+}
+
+table {
+    background-color: white;
+}
+
+tr{
+    cursor: pointer;
+}
+
+th.left {
+    width: 40%;
+}
+
+.PageContent{
+    padding: 5vh;
+    margin: auto;
+    height: 95vh;
+    width: 80vw;
+    overflow: auto;
+}
+
+.card {
+    height: 100%;
+}
+
+.question-text {
+    min-height: 30vh;
+}
+
+.text-area-question {
+    height: 35vh;
+    width: 100%;
+}
+
+.text-maching {
+    position: unset !important;
+}
+
+.right-mach {
+    border: solid 1px;
+}
+
+.questionContent {
+    overflow: auto;
+    max-height: 65vh;
+}

@@ -1,0 +1,59 @@
+img {
+    width: 7vw !important;
+    display: inline-block;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.left {
+    float: left;
+    width: 40%;
+}
+
+.right {
+    float: right;
+    width: 40%;
+}
+
+.left.block-content {
+    margin-left: 5vw;
+}
+
+.right.block-content {
+    margin-right: 5vw;
+}
+
+.block-content {
+    border: 5px solid transparent;
+    border-color: rgba(0, 123, 255, 0);
+    cursor: pointer;
+    width: 25vw;
+    height: 45vh;
+}
+
+.block-content:hover{
+    border: 5px solid transparent;
+    border-color: rgba(0, 123, 255, 0.6);
+}
+
+.block-content.top {
+    margin-top: 10vh;
+}
+
+
+.block-content.bottom {
+    margin-bottom: 10vh;
+}
+
+.block-content.center {
+    margin-left: 38vw;
+    margin-right: 38vw;
+}
+
+.content {
+    margin: 0 auto;
+    display: inline;
+}
+

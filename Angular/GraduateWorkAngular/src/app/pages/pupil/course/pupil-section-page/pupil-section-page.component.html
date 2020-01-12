@@ -1,0 +1,43 @@
+<div class="teacher" style="background-color: whitesmoke">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="pupil-page">На главную</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="pupil-page/courses">Курсы <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pupil-page/tests">Тесты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pupil-page/results">Результаты</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+      </form>
+    </div>
+  </nav>
+  <div>
+    <div style="margin-top: 5vh; width: 60%; position: relative; left: 25%;">
+      <div *ngFor="let item of subjectBlocks" class="subjectBlock">
+        <a [ngClass]="{'isDisabled': !item.isAvailable}" [routerLink]="['sectionblock', item.SectionBlockID]">
+          <div class="number">
+            <span>{{item.Position}}/{{count}}</span>
+          </div>
+          <div class="name">{{item.Name}}</div>
+          <div class="info" [ngClass]="{'greyInfo': !item.isPassed}">
+            <span *ngIf=item.isPassed class="icon">✔</span>
+            <span *ngIf=!item.isPassed class="icon">✖</span>
+            <span>{{item.QuestionsCount}} questions</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

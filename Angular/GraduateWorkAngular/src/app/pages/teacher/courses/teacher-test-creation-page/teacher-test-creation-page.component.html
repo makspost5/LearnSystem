@@ -1,0 +1,237 @@
+<div class="teacher">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="teacher-page">На главную</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher-page/all-courses">Курсы <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher-page/tests">Тесты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher-page/results">Результаты</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="testEditorHeader">
+        <h2 *ngIf="testParameters.name">{{testParameters.name}}</h2>
+        <h2 *ngIf="!testParameters.name">Название теста</h2>
+    </div>
+
+    <table class="testDesigner" style="background-color: #D9F0FF;">
+        <tbody>
+            <tr>
+                <td class="designerLeftCell">
+                    <div>
+                        <div class="testEditorBody">
+                            <div class="testEditorParameters" (click)="changeQuestion(-1)">
+                                <div class="testEditorQuestionheader">
+                                    <span class="testParametrs">Параметры теста</span>
+                                </div>
+                            </div>
+
+                            <div *ngFor="let question of questions; let i = index" (click)="changeQuestion(i)"
+                                [ngClass]="{'selected-question': selectedQuestionNumber === i, 'testEditorQuestion': true}">
+                                <div class="testEditorQuestionheader">
+                                    <div class="testEditorQuestionTitle"><span>{{i+1}}.</span></div>
+                                    <span>{{getQuestionName(i)}}</span>
+                                    <button class="btn btn-danger delete-button" (click)="deleteQuestion(i)">X</button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-secondary purple-btn" (click)="addQuestion()">Добавить
+                                вопрос</button>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="designerRightCell">
+                    <!-- TODO -->
+                    <form class="register-form" [formGroup]="questionForm">
+                        <div class="questionEditorContainer">
+                            <div *ngIf="selectedQuestionNumber !== -1" style="display: contents;">
+                                <div class="questionTypeGroup">
+                                    <div class="left">
+                                        <span class="questionEditorAnswerTypeTitle">Тип вопроса</span>
+                                        <select (change)="questiontTypeChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="questions[selectedQuestionNumber].selectedTypeValue">
+                                            <option value="0" disabled>Тип вопроса</option>
+                                            <option *ngFor="let answerType of answerTypes"
+                                                [value]="answerType.AnswerTypeID">
+                                                {{answerType.Name}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="right">
+                                        <span class="questionEditorAnswerTypeTitle">Баллов за правильный ответ</span>
+                                        <input class="number" type="number" name="quantity" min="0"
+                                            [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="questions[selectedQuestionNumber].numberOfPoints">
+                                    </div>
+                                </div>
+
+                                <div class="questionBody" *ngIf="selectedQuestionNumber !== -1">
+                                    <span class="questionEditorAnswerTypeTitle">Тело вопроса</span>
+                                    <div id='fake_textarea' contenteditable
+                                        [textContent]="questions[selectedQuestionNumber].body"
+                                        (input)="questions[selectedQuestionNumber].body=$event.target.textContent"
+                                        name="questionBody"></div>
+                                </div>
+
+                                <hr class="questionEditorSeparate">
+
+                                <div class="questionAnswers">
+                                    <div *ngIf="questions[selectedQuestionNumber].questionType.isOne">
+
+                                        <div *ngFor="let answer of questions[selectedQuestionNumber].answers; let i = index"
+                                            style="display: flex; margin-bottom: 1vh;">
+                                            <label class="container">
+                                                <input *ngIf="!answer.isRight" type="radio" name="radio" value="i"
+                                                    (change)="radioButtonClicked(i)">
+                                                <input *ngIf="answer.isRight" checked type="radio" name="radio"
+                                                    value="i" (change)="radioButtonClicked(i)">
+                                                <span class="checkmark radio-checkmark"></span>
+                                            </label>
+                                            <input class="text" type="text" placeholder="Ответ"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="questions[selectedQuestionNumber].answers[i].body">
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="questions[selectedQuestionNumber].questionType.isSeveral">
+                                        <div *ngFor="let answer of questions[selectedQuestionNumber].answers; let i = index"
+                                            style="display: flex; margin-bottom: 1vh;">
+                                            <label class="container">
+                                                <input type="checkbox" name="checkbox" value="i"
+                                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="answer.isRight">
+                                                <span class="checkmark checkbox-checkmark"></span>
+                                            </label>
+                                            <input class="text" type="text" placeholder="Ответ"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="questions[selectedQuestionNumber].answers[i].body">
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="questions[selectedQuestionNumber].questionType.isOrder">
+                                        <div *ngFor="let answer of questions[selectedQuestionNumber].answerOrder; let i = index"
+                                            style="display: flex; margin-bottom: 1vh;">
+                                            <label class="container">
+                                                <span class="checkmark checkbox-checkmark checkmark-order"
+                                                    *ngIf="questions[selectedQuestionNumber].answerOrder[i].number === 0"
+                                                    (click)="orderAnswerClick(i)"> </span>
+                                                <span class="checkmark checkbox-checkmark checkmark-order"
+                                                    *ngIf="questions[selectedQuestionNumber].answerOrder[i].number !== 0"
+                                                    (click)="orderAnswerClick(i)">{{questions[selectedQuestionNumber].answerOrder[i].number}}
+                                                </span>
+                                            </label>
+                                            <input class="text" type="text" placeholder="Ответ"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="questions[selectedQuestionNumber].answerOrder[i].body">
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="questions[selectedQuestionNumber].questionType.isMatching">
+                                        <div
+                                            *ngFor="let answer of questions[selectedQuestionNumber].answerMatching; let i = index">
+                                            <input class="text left" type="text" placeholder="Левая часть"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="questions[selectedQuestionNumber].answerMatching[i].LeftParth">
+                                            <input class="text right" type="text" placeholder="Правая часть"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="questions[selectedQuestionNumber].answerMatching[i].RightParth">
+
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        *ngIf="!(questions[selectedQuestionNumber].questionType.isText || questions[selectedQuestionNumber].questionType.isSpecial)"
+                                        class="btn btn-secondary purple-btn" (click)="addAnswer()">Добавить
+                                        ответ</button>
+                                </div>
+                            </div>
+
+                            <div *ngIf="selectedQuestionNumber === -1">
+                                <input formControlName="title" class="questionEditorTitle" name="questionName"
+                                    placeholder="Название теста" [(ngModel)]="testParameters.name" />
+                                <hr class="questionEditorSeparate">
+
+                                <div class="questionTypeGroup">
+                                    <div class="left">
+                                        <span class="questionEditorAnswerTypeTitle">Тип теста</span>
+                                        <select [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="testParameters.typeTestID">
+                                            <option value="0" disabled>Выберите...</option>
+                                            <option *ngFor="let testType of testTypes" [value]="testType.TypeTestID">
+                                                {{testType.Name}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="right">
+                                        <span class="questionEditorAnswerTypeTitle">Предмет</span>
+                                        <select [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="testParameters.subjectID">
+                                            <option value="0" disabled>Выберите...</option>
+                                            <option *ngFor="let subject of subjects" [value]="subject.SubjectID">
+                                                {{subject.Name}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="right">
+                                        <table class="table table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Группа</th>
+                                                    <th scope="col">Доступность теста</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let group of groupModels; let i = index"
+                                                    (click)="changeAvailable(i)">
+                                                    <th class="left"
+                                                        *ngIf="group.subjectId == testParameters.subjectID">
+                                                        {{group.name}}</th>
+                                                    <td *ngIf="group.subjectId == testParameters.subjectID">
+                                                        <span *ngIf="group.isAvailable" class="text-success"
+                                                            style="font-weight: 600;">Доступен</span>
+                                                        <span *ngIf="!group.isAvailable" class="text-danger"
+                                                            style="font-weight: 600;">Не доступен</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <div class="buttons">
+                <button style="margin-right: 2%;" class="btn btn-success" (click)="saveTest()">Сохранить</button>
+                <button (click)="showQuestions()" class="btn btn-danger">Отменить</button>
+            </div>
+        </tbody>
+    </table>
+
+</div>

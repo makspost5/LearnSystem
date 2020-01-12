@@ -1,0 +1,57 @@
+<div class="teacher">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="teacher-page">На главную</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="teacher-page/all-courses">Курсы <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/tests">Тесты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="teacher-page/results">Результаты</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Выход</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="content">
+    <button type="button" class="btn btn-success create-btn" (click)="createCourse()">Создать курс</button>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Название курса</th>
+          <th scope="col">Предмет</th>
+          <th scope="col">Количество секций</th>
+          <th scope="col">Доступность</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let courseRow of courseRows; let i = index">
+          <th scope="row" (click)="selectCourse(courseRow.ID)">{{courseRow.ID}}</th>
+          <td (click)="selectCourse(courseRow.ID)">{{courseRow.Name}}</td>
+          <td (click)="selectCourse(courseRow.ID)">{{courseRow.Subject}}</td>
+          <td (click)="selectCourse(courseRow.ID)">{{courseRow.SectionsCount}}</td>
+          <td (click)="selectCourse(courseRow.ID)">
+            <span *ngIf="courseRow.Available" class="text-success" style="font-weight: 600;">Доступен</span>
+            <span *ngIf="!courseRow.Available" class="text-danger" style="font-weight: 600;">Не доступен</span>
+          </td>
+          <td><button class="btn btn-danger" (click)="deleteCourse(i)">Удалить</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
